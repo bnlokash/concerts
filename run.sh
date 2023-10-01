@@ -35,7 +35,7 @@ fi
 length=$((end_time - start_time))
 
 # Calculate the time to begin fading out
-fade_out_start=$((end_time - 3))
+fade_out_start=$((end_time - 2))
 
 # If output file is not specified, construct it by concatenating artist and date
 if [[ -z "$output_file" ]]; then
@@ -45,7 +45,7 @@ fi
 # Construct the ffmpeg command with double quotes around variables
 ffmpeg_command="ffmpeg -i \"$input_file\" -ss $start_time -t $length -vf \"crop=min(iw\,ih):min(iw\,ih),setsar=1,drawtext=fontfile=./font.ttf:text='$artist
 $date
-$venue':fontcolor=white:fontsize=48:line_spacing=50:shadowcolor=$shadow_color:shadowx=3:shadowy=3:x=100:y=h-th-100,fade=t=in:st=$start_time:d=3,fade=t=out:st=$fade_out_start:d=3\" -af \"afade=t=in:st=$start_time:d=3,afade=t=out:st=$fade_out_start:d=3\" -c:v libx264 -crf 23 -c:a aac -strict experimental -b:a 192k -y \"$output_file\""
+$venue':fontcolor=white:fontsize=48:line_spacing=50:shadowcolor=$shadow_color:shadowx=3:shadowy=3:x=100:y=h-th-100,fade=t=in:st=$start_time:d=2,fade=t=out:st=$fade_out_start:d=2\" -af \"afade=t=in:st=$start_time:d=2,afade=t=out:st=$fade_out_start:d=2\" -c:v libx264 -crf 23 -c:a aac -strict experimental -b:a 192k -y \"$output_file\""
 
 
 
